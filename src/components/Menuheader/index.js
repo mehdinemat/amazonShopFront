@@ -9,6 +9,7 @@ const Menuheader = () => {
   const [flag, setFlag] = useBoolean()
   const [categoryList, setCategoryList] = useState()
   const [categoryShow, setCategoryShow] = useState()
+  const [parentList , setParentList ] = useState()
 
   const dispatch = useDispatch()
   const { category } = useSelector(state => state)
@@ -43,7 +44,7 @@ const Menuheader = () => {
   useEffect(() => {
 
     setCategoryList([...category?.categories.map((item) => (getCategoryList(item )))])
-
+    setParentList(category?.categories?.map((item)=>( !item?.parentId && item?.id )))
   }, [category?.categories])
 
   useEffect(() => {
@@ -63,6 +64,10 @@ const Menuheader = () => {
     console.log(categoryShow, 'categoryShow')
   }, [categoryShow])
 
+  useEffect(()=>{
+    console.log(parentList , 'parentList')
+  },[parentList])
+
 
   return (
     <Stack h={'50px'} backgroundColor={'white'} shadow={'base'} alignItems={'center'} justifyContent={'center'}>
@@ -75,8 +80,8 @@ const Menuheader = () => {
 
       <HStack w={'100%'} justifyContent={'space-between'}>
         {
-          category && category?.categories.map((item) => (
-
+          category && category?.categories.map((item) =>
+            (
             <Box h={'100%'} onMouseEnter={() => {handleCategoryShow(item.id)
             }} onMouseLeave={setFlag.off}>{!item?.parentId && item?.name}</Box>
           ))
