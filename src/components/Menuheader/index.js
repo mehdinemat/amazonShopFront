@@ -9,7 +9,7 @@ const Menuheader = () => {
   const [flag, setFlag] = useBoolean()
   const [categoryList, setCategoryList] = useState()
   const [categoryShow, setCategoryShow] = useState()
-  const [parentList , setParentList ] = useState()
+  const [parentList, setParentList] = useState()
 
   const dispatch = useDispatch()
   const { category } = useSelector(state => state)
@@ -43,8 +43,8 @@ const Menuheader = () => {
 
   useEffect(() => {
 
-    setCategoryList([...category?.categories.map((item) => (getCategoryList(item )))])
-    setParentList(category?.categories?.map((item)=>( !item?.parentId && item?.id )))
+    setCategoryList([...category?.categories.map((item) => (getCategoryList(item)))])
+    setParentList(category?.categories?.map((item) => (!item?.parentId && item?.id)))
   }, [category?.categories])
 
   useEffect(() => {
@@ -54,19 +54,19 @@ const Menuheader = () => {
   }, [categoryList])
 
   const handleCategoryShow = (id) => {
-    console.log(id , 'id')
-    setCategoryShow(categoryList.filter((item) => (item.filter((v)=>(v.parentId === id)).length > 0   )))
+    console.log(id, 'id')
+    setCategoryShow(categoryList.filter((item) => (item.filter((v) => (v.parentId === id)).length > 0)))
     setFlag.on()
   }
 
   useEffect(() => {
-    
+
     console.log(categoryShow, 'categoryShow')
   }, [categoryShow])
 
-  useEffect(()=>{
-    console.log(parentList , 'parentList')
-  },[parentList])
+  useEffect(() => {
+    console.log(parentList, 'parentList')
+  }, [parentList])
 
 
   return (
@@ -81,8 +81,9 @@ const Menuheader = () => {
       <HStack w={'100%'} justifyContent={'space-between'}>
         {
           category && category?.categories.map((item) =>
-            (
-            <Box h={'100%'} onMouseEnter={() => {handleCategoryShow(item.id)
+          (
+            <Box h={'100%'} onMouseEnter={() => {
+              handleCategoryShow(item.id)
             }} onMouseLeave={setFlag.off}>{!item?.parentId && item?.name}</Box>
           ))
         }
@@ -93,7 +94,7 @@ const Menuheader = () => {
         } */}
 
       </HStack>
-      {(flag && categoryShow[0] )? <Stack onMouseEnter={setFlag.on} style={{ backgroundColor: '#d9d9d900' }} onMouseLeave={setFlag.off} position={'absolute'} marginTop={'-10px'} w={'100%'}>
+      {(flag && categoryShow[0]) ? <Stack onMouseEnter={setFlag.on} style={{ backgroundColor: '#d9d9d900' }} onMouseLeave={setFlag.off} position={'absolute'} marginTop={'-10px'} w={'100%'}>
         <Box
           paddingBottom={'50px'}
           paddingTop={'50px'}
@@ -106,14 +107,15 @@ const Menuheader = () => {
           shadow='sm'
           width={'100%'}
         >
-            {
-              categoryShow[0] && categoryShow?.[0].map((item , index)=>(
-                index > 0 && (item?.children?.length === 0 ?
-                <Text w={'100%'} textAlign={'left'}>
-                {item.name}
-                </Text> : <Text color={'red'} w={'100%'} textAlign={'left'}>{item.name}</Text>)
-              ))
-            }
+          {
+            categoryShow[0] && categoryShow?.[0].map((item, index) => (
+              index > 0 && ((item?.children?.length > 0 || parentList.includes(item.parentId))?
+                <Text color={'blackAlpha.700'} w={'100%'} textAlign={'left'} cursor={'pointer'}>{item.name}</Text>
+                : <Text w={'100%'} color={'blackAlpha.500'} textAlign={'left'}>
+                  {item.name}
+                </Text>)
+            ))
+          }
         </Box>
       </Stack> : ''}
     </Stack>
