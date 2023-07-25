@@ -105,6 +105,7 @@ const Menuheader = () => {
           bg='white'
           rounded='md'
           shadow='sm'
+          height={'auto'}
           width={'100%'}
         >
           {
