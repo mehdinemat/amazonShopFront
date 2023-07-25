@@ -101,13 +101,14 @@ const Menuheader = () => {
           shadow='sm'
           width={'100%'}
         >
-          <Text>
             {
-              categoryShow[0] && categoryShow?.[0].map((item)=>(
-                <p>{item.name}</p>
+              categoryShow[0] && categoryShow?.[0].map((item , index)=>(
+                index > 0 && (item?.children?.length === 0 ?
+                <Text w={'100%'} textAlign={'left'}>
+                {item.name}
+                </Text> : <Text color={'red'} w={'100%'} textAlign={'left'}>{item.name}</Text>)
               ))
             }
-          </Text>
         </Box>
       </Stack> : ''}
     </Stack>
