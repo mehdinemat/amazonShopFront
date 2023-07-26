@@ -17,6 +17,10 @@ const ProductPageList = (props) => {
     dispatch(getProductSlug({ param: slug }))
   }, [])
 
+  useEffect(() => {
+    console.log(product, ' product t ')
+  }, [product])
+
   return (
     <Layout>
       <VStack>
@@ -45,46 +49,9 @@ const ProductPageList = (props) => {
               </Card>
             </Stack>)
 
-              </AccordionPanel>
-            </AccordionItem>
-          </Accordion>
-        </Stack>
-        <Stack w={'100%'} alignItems={'end'} >
-          <Accordion defaultIndex={[0]} allowMultiple w={'100%'} py={'5px'}>
-            <AccordionItem>
-              <h2 style={{ direction: 'rtl' }}>
-                <AccordionButton>
-                  <Box as="span" flex='1' textAlign='right'>
-                    موبایل ارزان تر از 5 میلیون
-                  </Box>
-                  <AccordionIcon />
-                </AccordionButton>
-              </h2>
-              <AccordionPanel pb={4} textAlign='right'>
-                این برای تست هست این برای تست هست این برای تست هست این برای تست هست این برای تست هست این برای تست هست
+          )
+        }
 
-              </AccordionPanel>
-            </AccordionItem>
-          </Accordion>
-        </Stack>
-        <Stack w={'100%'} alignItems={'end'} >
-          <Accordion defaultIndex={[0]} allowMultiple w={'100%'} py={'5px'}>
-            <AccordionItem>
-              <h2 style={{ direction: 'rtl' }}>
-                <AccordionButton>
-                  <Box as="span" flex='1' textAlign='right'>
-                    موبایل ارزان تر از 5 میلیون
-                  </Box>
-                  <AccordionIcon />
-                </AccordionButton>
-              </h2>
-              <AccordionPanel pb={4} textAlign='right'>
-                این برای تست هست این برای تست هست این برای تست هست این برای تست هست این برای تست هست این برای تست هست
-
-              </AccordionPanel>
-            </AccordionItem>
-          </Accordion>
-        </Stack>
       </VStack>
     </Layout>
   )

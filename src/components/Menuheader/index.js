@@ -70,7 +70,7 @@ const Menuheader = () => {
 
 
   return (
-    <Stack h={'50px'} backgroundColor={'white'} shadow={'base'} alignItems={'center'} justifyContent={'center'}>
+    <Stack h={'50px'} backgroundColor={'white'} shadow={'base'} alignItems={'center'} justifyContent={'center'} zIndex={'9999'}>
 
 
       {/* <Grid templateColumns='repeat(5, 1fr)' gap={6}>
