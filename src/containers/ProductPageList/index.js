@@ -20,40 +20,30 @@ const ProductPageList = (props) => {
   return (
     <Layout>
       <VStack>
-        <Stack w={'100%'} alignItems={'end'} >
-          <Card w={'100%'} mx={'6px'}>
-            <CardBody>
-              <Accordion defaultIndex={[0]} allowMultiple w={'100%'} py={'5px'} >
-                <AccordionItem>
-                  <h2 style={{ direction: 'rtl' }}>
-                    <AccordionButton>
-                      <Box as="span" flex='1' textAlign='right'>
-                        موبایل ارزان تر از 5 میلیون
-                      </Box>
-                      <AccordionIcon />
-                    </AccordionButton>
-                  </h2>
-                  <AccordionPanel pb={4} textAlign='right'>
-                    این برای تست هست این برای تست هست این برای تست هست این برای تست هست این برای تست هست این برای تست هست
-                  </AccordionPanel>
-                </AccordionItem>
-              </Accordion>
-            </CardBody>
-          </Card>
-        </Stack>
-        <Stack w={'100%'} alignItems={'end'} >
-          <Accordion defaultIndex={[0]} allowMultiple w={'100%'} py={'5px'}>
-            <AccordionItem>
-              <h2 style={{ direction: 'rtl' }}>
-                <AccordionButton>
-                  <Box as="span" flex='1' textAlign='right'>
-                    موبایل ارزان تر از 5 میلیون
-                  </Box>
-                  <AccordionIcon />
-                </AccordionButton>
-              </h2>
-              <AccordionPanel pb={4} textAlign='right'>
-                این برای تست هست این برای تست هست این برای تست هست این برای تست هست این برای تست هست این برای تست هست
+        {
+          product?.productByPrice.map((item) =>
+          (Object.keys(item).length > 1 &&
+            <Stack w={'100%'} alignItems={'end'} >
+              <Card w={'100%'} m={'6px'}>
+                <CardBody>
+                  <Accordion defaultIndex={[0]} allowMultiple w={'100%'} py={'5px'} >
+                    <AccordionItem>
+                      <h2 style={{ direction: 'rtl' }}>
+                        <AccordionButton>
+                          <Box as="span" flex='1' textAlign='right'>
+                            {item.title}
+                          </Box>
+                          <AccordionIcon />
+                        </AccordionButton>
+                      </h2>
+                      <AccordionPanel pb={4} textAlign='right'>
+                       {console.log(item , 'teimmmmmmmm')}
+                      </AccordionPanel>
+                    </AccordionItem>
+                  </Accordion>
+                </CardBody>
+              </Card>
+            </Stack>)
 
               </AccordionPanel>
             </AccordionItem>
