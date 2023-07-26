@@ -1,9 +1,8 @@
-import { Box, Button, ButtonGroup, Fade, FocusLock, FormControl, FormLabel, HStack, IconButton, Input, List, ListItem, OrderedList, Popover, PopoverArrow, PopoverCloseButton, PopoverContent, PopoverTrigger, ScaleFade, Show, Slide, SlideFade, Stack, UnorderedList, VStack, useBoolean, useDisclosure, Text, Grid, GridItem, SimpleGrid } from '@chakra-ui/react'
+import { Box, Button, ButtonGroup, Fade, FocusLock, FormControl, FormLabel, HStack, IconButton, Input, List, ListItem, OrderedList, Popover, PopoverArrow, PopoverCloseButton, PopoverContent, PopoverTrigger, ScaleFade, Show, Slide, SlideFade, Stack, UnorderedList, VStack, useBoolean, useDisclosure, Text, Grid, GridItem, SimpleGrid, Link } from '@chakra-ui/react'
 import React, { forwardRef, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { categories } from '../../redux/actions/category'
-import _ from 'lodash'
-
+import _, { flow } from 'lodash'
 const Menuheader = () => {
 
   const { isOpen, onToggle } = useDisclosure()
@@ -124,8 +123,8 @@ const Menuheader = () => {
                 index > 0 && (<Box  height={'15px'} width={'250px'} alignItems={'end'} justifyContent={'right'}>
                   {
                     (item?.children?.length > 0 || parentList.includes(item.parentId)) ?
-                      <Link  color={'blackAlpha.700'}  textAlign={'right'} justifyContent={'end'} cursor={'pointer'} width={'100%'} display={'block'}>{item.name}</Link>
-                      : <Link w={'auto'} color={'blackAlpha.500'} textAlign={'right'} cursor={'pointer'} display={'block'}>
+                      <Link href={item.slug}  color={'blackAlpha.700'}  textAlign={'right'} justifyContent={'end'} cursor={'pointer'} width={'100%'} display={'block'}>{item.name}</Link>
+                      : <Link href={item.slug} w={'auto'} color={'blackAlpha.500'} textAlign={'right'} cursor={'pointer'} display={'block'}>
                         {item.name}
                       </Link>
                   }
