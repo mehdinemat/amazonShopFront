@@ -2,7 +2,8 @@ import { Box, Button, ButtonGroup, Fade, FocusLock, FormControl, FormLabel, HSta
 import React, { forwardRef, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { categories } from '../../redux/actions/category'
-import _, { flow } from 'lodash'
+import _ from 'lodash'
+
 const Menuheader = () => {
 
   const { isOpen, onToggle } = useDisclosure()
@@ -84,7 +85,7 @@ const Menuheader = () => {
 
 
 
-      <HStack w={'100%'} justifyContent={'space-between'}>
+      <HStack w={'90%'} justifyContent={'space-between'}>
         {
           category && category?.categories.map((item) =>
           (
@@ -100,7 +101,7 @@ const Menuheader = () => {
         } */}
 
       </HStack>
-      {(flag && categoryShow[0]) ? <Stack onMouseEnter={setFlag.on} style={{ backgroundColor: '#d9d9d900' }} onMouseLeave={setFlag.off} position={'absolute'} marginTop={'-10px'} w={'100%'}>
+      {(flag && categoryShow[0]) ? <Stack onMouseEnter={setFlag.on} alignItems={'center'} style={{ backgroundColor: '#d9d9d900' }} onMouseLeave={setFlag.off} position={'absolute'} marginTop={'-10px'} w={'100%'}>
         <Box
           paddingBottom={'50px'}
           paddingTop={'50px'}
@@ -112,7 +113,7 @@ const Menuheader = () => {
           rounded='md'
           shadow='sm'
           height={'350px'}
-          width={'100%'}
+          width={'95%'}
           dir='rtl'
         >
           <Stack
@@ -120,13 +121,13 @@ const Menuheader = () => {
            >
             {
               categoryShow[0] && categoryShow?.[0].map((item, index) => (
-                index > 0 && (<Box  height={'15px'} width={'250px'} >
+                index > 0 && (<Box  height={'15px'} width={'250px'} alignItems={'end'} justifyContent={'right'}>
                   {
                     (item?.children?.length > 0 || parentList.includes(item.parentId)) ?
-                      <Text color={'blackAlpha.700'} w={'auto'} textAlign={'right'} cursor={'pointer'} >{item.name}</Text>
-                      : <Text w={'auto'} color={'blackAlpha.500'} textAlign={'right'} cursor={'pointer'}>
+                      <Link  color={'blackAlpha.700'}  textAlign={'right'} justifyContent={'end'} cursor={'pointer'} width={'100%'} display={'block'}>{item.name}</Link>
+                      : <Link w={'auto'} color={'blackAlpha.500'} textAlign={'right'} cursor={'pointer'} display={'block'}>
                         {item.name}
-                      </Text>
+                      </Link>
                   }
                 </Box>)
               ))
