@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react'
 import Layout from '../../components/Layout'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { getProductSlug } from '../../redux/actions/proudct'
 import { useParams } from 'react-router-dom'
-import { Stack, VStack, Text, Accordion, AccordionItem, AccordionButton, AccordionIcon, AccordionPanel, Box, CardBody, Card } from '@chakra-ui/react'
+import { Stack, VStack, Text, Accordion, AccordionItem, AccordionButton, AccordionIcon, AccordionPanel, Box, CardBody, Card, Image } from '@chakra-ui/react'
 const ProductPageList = (props) => {
 
   const { slug } = useParams()
+
+  const { product } = useSelector(state => state)
 
   const dispatch = useDispatch()
 
