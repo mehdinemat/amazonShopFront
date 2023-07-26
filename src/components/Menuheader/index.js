@@ -1,8 +1,8 @@
-import { Box, Button, ButtonGroup, Fade, FocusLock, FormControl, FormLabel, HStack, IconButton, Input, List, ListItem, OrderedList, Popover, PopoverArrow, PopoverCloseButton, PopoverContent, PopoverTrigger, ScaleFade, Show, Slide, SlideFade, Stack, UnorderedList, VStack, useBoolean, useDisclosure, Text } from '@chakra-ui/react'
+import { Box, Button, ButtonGroup, Fade, FocusLock, FormControl, FormLabel, HStack, IconButton, Input, List, ListItem, OrderedList, Popover, PopoverArrow, PopoverCloseButton, PopoverContent, PopoverTrigger, ScaleFade, Show, Slide, SlideFade, Stack, UnorderedList, VStack, useBoolean, useDisclosure, Text, Grid, GridItem, SimpleGrid } from '@chakra-ui/react'
 import React, { forwardRef, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { categories } from '../../redux/actions/category'
-import _ from 'lodash'
+import _, { flow } from 'lodash'
 const Menuheader = () => {
 
   const { isOpen, onToggle } = useDisclosure()
@@ -73,7 +73,13 @@ const Menuheader = () => {
     <Stack h={'50px'} backgroundColor={'white'} shadow={'base'} alignItems={'center'} justifyContent={'center'}>
 
 
-
+      {/* <Grid templateColumns='repeat(5, 1fr)' gap={6}>
+        <GridItem w='100%' h='10' bg='blue.500' />
+        <GridItem w='100%' h='10' bg='blue.500' />
+        <GridItem w='100%' h='10' bg='blue.500' />
+        <GridItem w='100%' h='10' bg='blue.500' />
+        <GridItem w='100%' h='10' bg='blue.500' />
+      </Grid> */}
 
 
 
@@ -82,7 +88,7 @@ const Menuheader = () => {
         {
           category && category?.categories.map((item) =>
           (
-            <Box h={'100%'} onMouseEnter={() => {
+            <Box h={'100%'} cursor={'pointer'} onMouseEnter={() => {
               handleCategoryShow(item.id)
             }} onMouseLeave={setFlag.off}>{!item?.parentId && item?.name}</Box>
           ))
@@ -105,18 +111,27 @@ const Menuheader = () => {
           bg='white'
           rounded='md'
           shadow='sm'
-          height={'auto'}
+          height={'350px'}
           width={'100%'}
+          dir='rtl'
         >
-          {
-            categoryShow[0] && categoryShow?.[0].map((item, index) => (
-              index > 0 && ((item?.children?.length > 0 || parentList.includes(item.parentId))?
-                <Text color={'blackAlpha.700'} w={'100%'} textAlign={'left'} cursor={'pointer'}>{item.name}</Text>
-                : <Text w={'100%'} color={'blackAlpha.500'} textAlign={'left'}>
-                  {item.name}
-                </Text>)
-            ))
-          }
+          <Stack
+           style={{display:'flex' , flexDirection:'column' ,alignContent:'flex-start' , flexWrap:'wrap' , height:'350px'}}
+           >
+            {
+              categoryShow[0] && categoryShow?.[0].map((item, index) => (
+                index > 0 && (<Box  height={'15px'} width={'250px'} >
+                  {
+                    (item?.children?.length > 0 || parentList.includes(item.parentId)) ?
+                      <Text color={'blackAlpha.700'} w={'auto'} textAlign={'right'} cursor={'pointer'} >{item.name}</Text>
+                      : <Text w={'auto'} color={'blackAlpha.500'} textAlign={'right'} cursor={'pointer'}>
+                        {item.name}
+                      </Text>
+                  }
+                </Box>)
+              ))
+            }
+          </Stack>
         </Box>
       </Stack> : ''}
     </Stack>
