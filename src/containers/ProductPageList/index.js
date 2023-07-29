@@ -3,7 +3,7 @@ import Layout from '../../components/Layout'
 import { useDispatch, useSelector } from 'react-redux'
 import { getProductSlug } from '../../redux/actions/proudct'
 import { useParams } from 'react-router-dom'
-import { Stack, VStack, Text, Accordion, AccordionItem, AccordionButton, AccordionIcon, AccordionPanel, Box, CardBody, Card, Image } from '@chakra-ui/react'
+import { Stack, VStack, Text, Accordion, AccordionItem, AccordionButton, AccordionIcon, AccordionPanel, Box, CardBody, Card, Image, HStack, Divider } from '@chakra-ui/react'
 const ProductPageList = (props) => {
 
   const { slug } = useParams()
@@ -36,11 +36,24 @@ const ProductPageList = (props) => {
                         <AccordionButton>
                           <Box as="span" flex='1' textAlign='right'>
                             {item.title}
+                          
                           </Box>
                           <AccordionIcon />
                         </AccordionButton>
                       </h2>
                       <AccordionPanel pb={4} textAlign='right'>
+                            <Divider />
+                        <HStack w={'100%'} justifyContent={'right'}>
+                        {
+                          item[0].map((v)=>(
+                              <VStack w={'10%'}>
+                                <img src={`localhost:2000/public/${v?.productPicture?.[0]?.img}`}/>
+                                <Text>{v.description}</Text>
+                                <Text>{v.price}</Text>
+                              </VStack>
+                          ))
+                        }
+                        </HStack>
                        {console.log(item , 'teimmmmmmmm')}
                       </AccordionPanel>
                     </AccordionItem>
